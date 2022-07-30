@@ -1,13 +1,67 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+img {
+  width: 300px;
+  height: 300px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input {
+  width: 260px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+button {
+  width: 75px;
+  height: 40px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #059862;
+  color: #fff;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 10px;
+}
+
+p {
+  padding: 1em;
+}
+
+p:nth-child(1) {
+  width: 75%;
+}
+
+p:hover {
+  background-color: #d2c3c3bd;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .dogs-container {
+  margin: 1em 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.container .input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px
 }

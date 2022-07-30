@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/doogle/static/css/main.07a396f8.css",
+    "main.js": "/doogle/static/js/main.ab52ea96.js",
+    "index.html": "/doogle/index.html",
+    "main.07a396f8.css.map": "/doogle/static/css/main.07a396f8.css.map",
+    "main.ab52ea96.js.map": "/doogle/static/js/main.ab52ea96.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.07a396f8.css",
+    "static/js/main.ab52ea96.js"
+  ]
+}

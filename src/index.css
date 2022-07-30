@@ -26,13 +26,13 @@ button {
   background-color: #059862;
   color: #fff;
   cursor: pointer;
+  margin: 1em 0 1em 1em;
+  float: right
 }
 
 form {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 10px;
+
+  max-width: 80%;
 }
 
 p {
@@ -64,4 +64,18 @@ p:hover {
   display: flex;
   flex-direction: column;
   gap: 8px
+}
+
+@media (max-width: 930px) {
+  .container .dogs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr
+  }
+}
+
+@media (max-width: 600px) {
+  .container .dogs-container {
+    display: grid;
+    grid-template-columns: 1fr
+  }
 }

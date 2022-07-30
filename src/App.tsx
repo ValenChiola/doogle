@@ -37,8 +37,8 @@ const App = () => {
           <label>Raza: </label>
           <input type="search" ref={inputRef} />
         </div>
-        <button onClick={() => setBreed("")}>Buscar</button>
         <button onClick={handleOpen}>Ver razas</button>
+        <button onClick={() => setBreed("")}>Buscar</button>
       </form>
       <Modal isOpen={isOpen} style={styles}>
         <CrossIcon onClose={handleClose} />

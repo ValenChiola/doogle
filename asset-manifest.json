@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/doogle/static/css/main.c4ca90d4.css",
-    "main.js": "/doogle/static/js/main.915751d5.js",
+    "main.css": "/doogle/static/css/main.a76878f9.css",
+    "main.js": "/doogle/static/js/main.ae1b6341.js",
     "index.html": "/doogle/index.html",
-    "main.c4ca90d4.css.map": "/doogle/static/css/main.c4ca90d4.css.map",
-    "main.915751d5.js.map": "/doogle/static/js/main.915751d5.js.map"
+    "main.a76878f9.css.map": "/doogle/static/css/main.a76878f9.css.map",
+    "main.ae1b6341.js.map": "/doogle/static/js/main.ae1b6341.js.map"
   },
   "entrypoints": [
-    "static/css/main.c4ca90d4.css",
-    "static/js/main.915751d5.js"
+    "static/css/main.a76878f9.css",
+    "static/js/main.ae1b6341.js"
   ]
 }

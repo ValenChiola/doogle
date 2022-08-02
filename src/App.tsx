@@ -1,29 +1,31 @@
-import React, { useRef, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useRef, useState } from "react";
 import Modal from "react-modal";
 import { Breeds } from "./components/Breeds";
 import { CrossIcon } from "./components/CrossIcon";
 import { Dogs } from "./components/Dogs";
-import styles from "./customStyles";
 
 import "./index.css";
 
 Modal.setAppElement("#root");
 
+const DEFAULT_BREED = 'vizsla'
+
 const App = () => {
-  const [breed, setBreed] = useState<string>();
+  const [breed, setBreed] = useState<string>(DEFAULT_BREED);
+  const [max, setMax] = useState(12);
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setBreed(inputRef.current?.value);
-  };
+  const queryClient = useQueryClient();
 
   const handleOnSelect = (breed: string) => {
-    if (!inputRef.current) return;
-    inputRef.current.value = breed;
     setBreed(breed);
     handleClose();
+  };
+
+  const handleOnBlur = () => {
+    if (!inputRef.current) return;
+    setMax(+inputRef.current.value);
   };
 
   const handleOpen = () => setIsOpen(true);
@@ -32,19 +34,39 @@ const App = () => {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
-        <div className="input-section">
-          <label>Raza: </label>
-          <input type="search" ref={inputRef} />
+      <div className="options">
+        <div className="buttons">
+          <button
+            onClick={() => queryClient.invalidateQueries(["dog", breed, max])}
+          >
+            Cargar más
+          </button>
+          <button onClick={handleOpen}>Ver razas</button>
         </div>
-        <button onClick={handleOpen}>Ver razas</button>
-        <button onClick={() => setBreed("")}>Buscar</button>
-      </form>
-      <Modal isOpen={isOpen} style={styles}>
+        <input
+          type="number"
+          min={1}
+          max={15}
+          defaultValue={max}
+          ref={inputRef}
+          onChange={handleOnBlur}
+        />
+      </div>
+
+      <h3>Raza: {breed ?? "Ninguna"}</h3>
+
+      <Modal
+        isOpen={isOpen}
+        style={{
+          overlay: {
+            backgroundColor: "#000000bd",
+          },
+        }}
+      >
         <CrossIcon onClose={handleClose} />
         <Breeds onSelect={handleOnSelect} />
       </Modal>
-      {breed && <Dogs breed={breed} />}
+      {breed && <Dogs breed={breed} max={max} />}
     </div>
   );
 };

@@ -1,27 +1,8 @@
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { fetchDogImagesByBreed } from "../services/dog";
 
-export const useDog = (breed: string) => {
-    const [images, setImages] = useState<string[]>([]);
-    const [isLoading, setIsLoading] = useState(false)
-    const [isError, setIsError] = useState(false)
-
-    useEffect(() => {
-        if (!breed) return
-        setIsLoading(true)
-        fetchDogImagesByBreed(breed)
-            .then(setImages)
-            .catch(() => setIsError(true))
-            .finally(() => setIsLoading(false))
-
-        return () => setIsError(false)
-
-    }, [breed]);
-
-    return {
-        images,
-        isLoading,
-        isError
-    }
-}
+export const useDog = (breed: string, max?: number) => useQuery(['dog', breed, max], () => fetchDogImagesByBreed(breed, max), {
+    refetchOnWindowFocus: false,
+    staleTime: Infinity
+})

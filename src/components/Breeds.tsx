@@ -1,12 +1,15 @@
-import React from "react";
 import { useBreeds } from "../hooks/useBreeds";
 
 export const Breeds = ({ onSelect }: Props) => {
-  const { breeds } = useBreeds();
+  const { data, status } = useBreeds();
+
+  if (status === 'loading') return <p>Cargando...</p>
+
+  if (status === 'error') return <p>Hubo un error :/</p>
 
   return (
     <div>
-      {breeds.map((breed) => (
+      {data.map((breed) => (
         <p
           key={breed}
           style={{ cursor: onSelect && "pointer" }}

@@ -1,18 +1,17 @@
-import React from "react";
 import { useDog } from "../hooks/useDog";
 
-export const Dogs = ({ breed }: Props) => {
-  const { images, isLoading, isError } = useDog(breed);
+export const Dogs = ({ breed, max }: Props) => {
+  const { data, status } = useDog(breed, max);
 
-  if (isLoading) return <p>Cargando...</p>;
+  if (status === 'loading') return <p>Cargando...</p>;
 
-  if (isError) return <p>No hay perros con la raza '{breed}'</p>;
+  if (status === 'error') return <p>No hay perros con la raza '{breed}'</p>;
 
   return (
     <div className="dogs-container">
       {
         //List of dogs with especific breed
-        images.map((image) => (
+        data.map((image) => (
           <img key={image} src={image} alt={image} />
         ))
       }
@@ -22,4 +21,5 @@ export const Dogs = ({ breed }: Props) => {
 
 interface Props {
   breed: string;
+  max?: number
 }

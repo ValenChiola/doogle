@@ -1,31 +1,30 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
 import { Breeds } from "./components/Breeds";
 import { CrossIcon } from "./components/CrossIcon";
 import { Dogs } from "./components/Dogs";
+import { useDebounce } from "./hooks/useDebounce";
 
 import "./index.css";
 
 Modal.setAppElement("#root");
 
-const DEFAULT_BREED = 'vizsla'
+const DEFAULT_BREED = "vizsla";
 
 const App = () => {
   const [breed, setBreed] = useState<string>(DEFAULT_BREED);
   const [max, setMax] = useState(12);
   const [isOpen, setIsOpen] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
+
+  const debounce = useDebounce({
+    onChange: (max) => setMax(+max),
+  });
 
   const handleOnSelect = (breed: string) => {
     setBreed(breed);
     handleClose();
-  };
-
-  const handleOnBlur = () => {
-    if (!inputRef.current) return;
-    setMax(+inputRef.current.value);
   };
 
   const handleOpen = () => setIsOpen(true);
@@ -48,8 +47,7 @@ const App = () => {
           min={1}
           max={15}
           defaultValue={max}
-          ref={inputRef}
-          onChange={handleOnBlur}
+          onChange={e => debounce(e.target.value)}
         />
       </div>
 

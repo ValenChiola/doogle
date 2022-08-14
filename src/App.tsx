@@ -11,15 +11,16 @@ import "./index.css";
 Modal.setAppElement("#root");
 
 const DEFAULT_BREED = "vizsla";
+const DEFAULT_MAX_IMAGES = 12
 
 const App = () => {
   const [breed, setBreed] = useState<string>(DEFAULT_BREED);
-  const [max, setMax] = useState(12);
+  const [max, setMax] = useState(DEFAULT_MAX_IMAGES);
   const [isOpen, setIsOpen] = useState(false);
   const queryClient = useQueryClient();
 
   const debounce = useDebounce({
-    onChange: (max) => setMax(+max),
+    onDebounce: (max) => setMax(+max),
   });
 
   const handleOnSelect = (breed: string) => {

@@ -1,7 +1,7 @@
 import { useDog } from "../hooks/useDog";
 
 export const Dogs = ({ breed, max }: Props) => {
-  const { data, status } = useDog(breed, max);
+  const { data, status } = useDog({ breed, max });
 
   if (status === 'loading') return <p>Cargando...</p>;
 

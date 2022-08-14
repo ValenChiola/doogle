@@ -4,17 +4,17 @@ declare global {
     }
 }
 
-export const useDebounce = ({ onChange, milliseconds = 700 }: Props) => {
+export const useDebounce = ({ onDebounce, milliseconds = 700 }: Props) => {
 
     const debounce = (cb: Function) => {
         window.timer && clearTimeout(window.timer);
         window.timer = setTimeout(cb, milliseconds);
     };
 
-    return (text: string, ...rest: any) => debounce(() => onChange(text, ...rest));
+    return (text: string) => debounce(() => onDebounce(text));
 };
 
 interface Props {
-    onChange: (text: string, ...rest: any) => unknown;
+    onDebounce: (text: string) => unknown;
     milliseconds?: number
 }
